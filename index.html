@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyBloom | Student Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">🌸</span>
+                <h2>StudyBloom</h2>
+            </div>
+
+            <p class="menu-label">MENU</p>
+<nav class="sidebar-nav">
+    <a href="#dashboard" class="nav-link active">
+        <span>🏠</span> Dashboard
+    </a>
+
+    <a href="#tasks" class="nav-link">
+        <span>📝</span> My Tasks
+    </a>
+
+    <a href="#add-task" class="nav-link">
+        <span>➕</span> Add New Task
+    </a>
+
+    <a href="#timetable" class="nav-link">
+        <span>🕒</span> Class Timetable
+    </a>
+
+    <a href="#study-plan" class="nav-link">
+        <span>📚</span> Study Plan
+    </a>
+
+    <a href="#exams" class="nav-link">
+        <span>📝</span> Exam Planner
+    </a>
+
+    <a href="#calendar" class="nav-link">
+        <span>📅</span> Calendar
+    </a>
+</nav>
+
+            <div class="sidebar-note">
+                <span>🌱</span>
+                <h3>Little steps matter!</h3>
+                <p>Every task you finish brings you closer to your goals.</p>
+            </div>
+
+            <div class="sidebar-footer">
+                Made with 💗 for students
+            </div>
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="topbar">
+                <div>
+                    <p class="date-label" id="current-date">YOUR STUDY SPACE</p>
+                    <h1>Hello, Student! <span>🌷</span></h1>
+                    <p class="welcome-text">
+                        Let's make today productive, one task at a time.
+                    </p>
+                </div>
+
+                <div class="profile-icon">🎀</div>
+            </header>
+
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Your Dashboard</h2>
+                        <p>Here's an overview of your study progress.</p>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="stats-grid">
+
+                    <div class="stat-card pink-card">
+                        <div class="stat-icon">📚</div>
+                        <p>Total Tasks</p>
+                        <h3 id="total-tasks">0</h3>
+                        <span>All your tasks</span>
+                    </div>
+
+                    <div class="stat-card green-card">
+                        <div class="stat-icon">⏳</div>
+                        <p>Pending Tasks</p>
+                        <h3 id="pending-tasks">0</h3>
+                        <span>Still to complete</span>
+                    </div>
+
+                    <div class="stat-card purple-card">
+                        <div class="stat-icon">✅</div>
+                        <p>Completed Tasks</p>
+                        <h3 id="completed-tasks">0</h3>
+                        <span>Great work!</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Progress Card -->
+                <div class="progress-card">
+                    <div class="progress-info">
+                        <div>
+                            <h3>Your Daily Progress 🌿</h3>
+                            <p id="progress-message">
+                                Every small step counts!
+                            </p>
+                        </div>
+
+                        <strong id="progress-percentage">0%</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- Add Task -->
+            <section id="add-task" class="content-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Create a New Task ✨</h2>
+                        <p>Write it down so you don't forget it.</p>
+                    </div>
+                </div>
+
+                <form id="task-form" class="task-form">
+
+                    <div class="form-group full-width">
+                        <label for="task-title">Task Title *</label>
+                        <input
+                            type="text"
+                            id="task-title"
+                            placeholder="e.g. Complete Data Mining assignment"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-category">Category</label>
+                        <select id="task-category">
+                            <option value="Assignment">Assignment</option>
+                            <option value="Exam">Exam</option>
+                            <option value="Study">Study Session</option>
+                            <option value="Project">Project</option>
+                            <option value="Personal">Personal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-priority">Priority</label>
+                        <select id="task-priority">
+                            <option value="High">High</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-date">Due Date *</label>
+                        <input type="date" id="task-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-subject">Subject (optional)</label>
+                        <input
+                            type="text"
+                            id="task-subject"
+                            placeholder="e.g. Computer Networks"
+                            maxlength="60"
+                        >
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="task-description">Description (optional)</label>
+                        <textarea
+                            id="task-description"
+                            rows="3"
+                            maxlength="300"
+                            placeholder="Add a few details about your task..."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-actions full-width">
+                        <button type="reset" class="secondary-btn">
+                            Clear
+                        </button>
+
+                        <button type="submit" class="primary-btn">
+                            + Add Task
+                        </button>
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- Task List -->
+            <section id="tasks" class="content-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>My Tasks 📝</h2>
+                        <p>Stay organized and keep moving forward.</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="task-toolbar">
+
+                    <div class="filter-buttons">
+                        <button type="button" class="filter-btn active" data-filter="all">
+                            All
+                        </button>
+
+                        <button type="button" class="filter-btn" data-filter="pending">
+                            Pending
+                        </button>
+
+                        <button type="button" class="filter-btn" data-filter="completed">
+                            Completed
+                        </button>
+                    </div>
+
+                    <input
+                        type="search"
+                        id="task-search"
+                        class="search-input"
+                        placeholder="🔍 Search tasks..."
+                        aria-label="Search tasks"
+                    >
+
+                </div>
+
+                <!-- JavaScript will display tasks here -->
+                <div id="task-list" class="task-list"></div>
+
+                <div id="empty-state" class="empty-state">
+                    <div>🌷</div>
+                    <h3>No tasks yet!</h3>
+                    <p>Add your first task and start organizing your day.</p>
+                </div>
+
+            </section>
+
+
+           <!-- Class Timetable -->
+<section id="timetable" class="content-section">
+    <div class="section-heading">
+        <div>
+            <h2>My Class Timetable 🕒</h2>
+            <p>Organize your university classes for the week.</p>
+        </div>
+    </div>
+    <!-- Add Class Form -->
+    <div class="progress-card">
+        <h3>🌷 Add a Class</h3>
+        <p>Enter your actual college timetable below.</p>
+        <form id="timetable-form" class="task-form">
+            <div class="form-group">
+                <label for="class-day">Day *</label>
+                <select id="class-day" required>
+                    <option value="">Choose a day</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="class-subject">Subject *</label>
+                <input
+                    type="text"
+                    id="class-subject"
+                    placeholder="e.g. Computer Networks"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label for="class-start">Start Time *</label>
+                <input type="time" id="class-start" required>
+            </div>
+            <div class="form-group">
+                <label for="class-end">End Time *</label>
+                <input type="time" id="class-end" required>
+            </div>
+            <div class="form-group">
+                <label for="class-room">Room / Faculty</label>
+                <input
+                    type="text"
+                    id="class-room"
+                    placeholder="e.g. Room 204"
+                >
+            </div>
+            <div class="form-actions full-width">
+                <button type="reset" class="secondary-btn">Clear</button>
+                <button type="submit" class="primary-btn">+ Add Class</button>
+            </div>
+        </form>
+    </div>
+    <!-- Weekly Calendar -->
+    <div class="section-heading">
+        <div>
+            <h2>Your Weekly Classes 📚</h2>
+            <p>View your college schedule in a calendar format.</p>
+        </div>
+    </div>
+    <div class="timetable-calendar-wrapper">
+        <div id="timetable-list" class="timetable-calendar"></div>
+    </div>
+    <div id="timetable-empty" class="empty-state">
+        <div class="empty-icon">🕒</div>
+        <h3>No classes added yet!</h3>
+        <p>Add your college classes to create your weekly timetable.</p>
+    </div>
+</section>
+<!-- Study Plan -->
+<section id="study-plan" class="content-section">
+
+    <div class="section-heading">
+        <div>
+            <h2>My Study Plan 📚</h2>
+            <p>Plan your subjects and achieve your daily study goals.</p>
+        </div>
+    </div>
+
+    <div class="progress-card">
+        <h3>🌷 Add a Study Topic</h3>
+
+        <form id="study-form" class="task-form">
+
+            <div class="form-group">
+                <label for="study-subject">Subject *</label>
+                <input
+                    type="text"
+                    id="study-subject"
+                    placeholder="e.g. Data Mining"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="study-topic">Topic *</label>
+                <input
+                    type="text"
+                    id="study-topic"
+                    placeholder="e.g. Classification"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="study-date">Study Date *</label>
+                <input type="date" id="study-date" required>
+            </div>
+
+            <div class="form-actions full-width">
+                <button type="reset" class="secondary-btn">Clear</button>
+                <button type="submit" class="primary-btn">
+                    + Add Study Topic
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="section-heading">
+        <div>
+            <h2>Your Study Topics 🌱</h2>
+            <p>Track your learning progress.</p>
+        </div>
+    </div>
+
+    <div id="study-list" class="task-list"></div>
+
+    <div id="study-empty" class="empty-state">
+        <div>📚</div>
+        <h3>No study topics yet!</h3>
+        <p>Add a subject and topic to start your study plan.</p>
+    </div>
+
+</section>
+
+
+<!-- Exam Planner -->
+<section id="exams" class="content-section">
+
+    <div class="section-heading">
+        <div>
+            <h2>Exam Planner 📝</h2>
+            <p>Keep track of upcoming examinations.</p>
+        </div>
+    </div>
+
+    <div class="progress-card">
+        <h3>🌸 Add an Exam</h3>
+
+        <form id="exam-form" class="task-form">
+
+            <div class="form-group">
+                <label for="exam-subject">Exam Subject *</label>
+                <input
+                    type="text"
+                    id="exam-subject"
+                    placeholder="e.g. Computer Networks"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="exam-date">Exam Date *</label>
+                <input type="date" id="exam-date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="exam-status">Preparation Status</label>
+                <select id="exam-status">
+                    <option value="Not Started">Not Started</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Prepared">Prepared</option>
+                </select>
+            </div>
+
+            <div class="form-actions full-width">
+                <button type="reset" class="secondary-btn">Clear</button>
+                <button type="submit" class="primary-btn">
+                    + Add Exam
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="section-heading">
+        <div>
+            <h2>Upcoming Exams 📅</h2>
+            <p>Check your exam dates and preparation status.</p>
+        </div>
+    </div>
+
+    <div id="exam-list" class="task-list"></div>
+
+    <div id="exam-empty" class="empty-state">
+        <div>📝</div>
+        <h3>No exams added yet!</h3>
+        <p>Add your upcoming exams to stay prepared.</p>
+    </div>
+
+</section>
+
+
+<!-- Calendar -->
+<section id="calendar" class="content-section">
+
+    <div class="section-heading">
+        <div>
+            <h2>My Calendar 📅</h2>
+            <p>View your tasks, study topics, and exams by date.</p>
+        </div>
+    </div>
+
+    <div class="progress-card">
+
+        <div class="calendar-header">
+            <button
+                type="button"
+                id="previous-month"
+                class="secondary-btn"
+            >
+                ← Previous
+            </button>
+
+            <h3 id="calendar-month">Month Year</h3>
+
+            <button
+                type="button"
+                id="next-month"
+                class="secondary-btn"
+            >
+                Next →
+            </button>
+        </div>
+
+        <div id="calendar-grid" class="calendar-grid"></div>
+
+    </div>
+
+    <div class="section-heading">
+        <div>
+            <h2 id="selected-date-heading">Scheduled Activities</h2>
+            <p>Activities scheduled for the selected date.</p>
+        </div>
+    </div>
+
+    <div id="calendar-events" class="task-list"></div>
+
+    <div id="calendar-empty" class="empty-state">
+        <div>🌷</div>
+        <h3>No activities on this date</h3>
+        <p>Choose another date or add a task, study topic, or exam.</p>
+    </div>
+
+</section>
+ <!-- Footer -->
+            <footer class="page-footer">
+                <p>Made with 🌸 and a little productivity magic.</p>
+                <p>StudyBloom · Your personal study companion</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
